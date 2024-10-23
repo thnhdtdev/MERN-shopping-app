@@ -1,8 +1,8 @@
 import { Button, Card, Checkbox, Form, Input, Space, Typography } from 'antd'
-import FormItem from 'antd/es/form/FormItem'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SocialLogin from './components/SocialLogin'
+import handleApi from '../../apis/handleApi'
 
 const { Title, Paragraph, Text } = Typography
 
@@ -13,8 +13,15 @@ const Login = () => {
     //form of ant
     const [form] = Form.useForm()
 
-    const handleLogin = (value: { email: string, password: string }) => {
-        console.log(value)
+    const handleLogin = async (values: { email: any; password: any }) => {
+        console.log(values);
+
+        try {
+            const res = await handleApi('/auth/register', values, 'post');
+            console.log(res)
+        } catch (error) {
+            console.log('error')
+        }
     }
 
     return (
@@ -61,7 +68,7 @@ const Login = () => {
                             Remember</Checkbox>
                     </div>
                     <div className="col text-end">
-                        <Link to={'/'} style={{color:'#F15E2B'}}>Forgot Password?</Link>
+                        <Link to={'/'} style={{ color: '#F15E2B' }}>Forgot Password?</Link>
                     </div>
                 </div>
 
