@@ -14,6 +14,7 @@ app.use(cors())
 app.use('/auth', userRouter)
 
 
+
 const connect = async () => {
     try {
         await mongoose.connect(urlDB);
@@ -25,7 +26,7 @@ const connect = async () => {
 
 connect().then(() => {
     app.listen(PORT, () => {
-        console.log(`Server is stating at http://localhost:${PORT}`);
+        console.log(`Server is starting at http://localhost:${PORT}`);
     })
 }).catch((error) => {
     console.log(error)
